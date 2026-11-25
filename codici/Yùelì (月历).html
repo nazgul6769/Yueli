@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiaco Cinese Evoluto</title>
+    <!-- html2canvas per la generazione dell'immagine card scaricabile -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="Yùelì (月历).css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-controls">
+            <button class="theme-toggle-btn" id="themeBtn" onclick="toggleTheme()" title="Cambia Tema">🌙</button>
+            <div class="lang-selector">
+                <span>🌐</span>
+                <select id="languageSelect" onchange="changeLanguage()">
+                    <option value="ita" selected>ITA</option>
+                    <option value="eng">ENG</option>
+                    <option value="esp">ESP</option>
+                    <option value="jpn">JPN</option>
+                </select>
+            </div>
+        </div>
+        <h1 id="txt-title">🐉 Zodiaco Cinese 🐉</h1>
+        <p id="txt-subtitle">Calcola il tuo animale guida e la sfumatura del tuo elemento</p>
+    </header>
+
+    <div class="card" id="main-card">
+        <h2 id="txt-calc-title">Calcola il tuo Segno ed Elemento</h2>
+        <div class="calculator">
+            <div class="form-row">
+                <label for="birthdate" id="txt-date-label">Inserisci la tua data di nascita:</label>
+                <input type="date" id="birthdate">
+            </div>
+
+            <div class="form-row">
+                <label for="birthhour" id="txt-hour-label">Ora di nascita (opzionale per l'Ascendente/Signo dell'Ora):</label>
+                <select id="birthhour">
+                    <option value="" id="opt-unknown">Non conosco l'ora</option>
+                    <option value="23">23:00 - 00:59 (Topo)</option>
+                    <option value="1">01:00 - 02:59 (Bue)</option>
+                    <option value="3">03:00 - 04:59 (Tigre)</option>
+                    <option value="5">05:00 - 06:59 (Coniglio)</option>
+                    <option value="7">07:00 - 08:59 (Drago)</option>
+                    <option value="9">09:00 - 10:59 (Serpente)</option>
+                    <option value="11">11:00 - 12:59 (Cavallo)</option>
+                    <option value="13">13:00 - 14:59 (Capra)</option>
+                    <option value="15">15:00 - 16:59 (Scimmia)</option>
+                    <option value="17">17:00 - 18:59 (Gallo)</option>
+                    <option value="19">19:00 - 20:59 (Cane)</option>
+                    <option value="21">21:00 - 22:59 (Maiale)</option>
+                </select>
+            </div>
+
+            <button onclick="calculateZodiac()" class="btn-main" id="txt-btn">Trova Profilo Completo</button>
+        </div>
+
+        <div id="result" class="result-box">
+            <h3 id="res-title"></h3>
+            <p id="res-element"></p>
+            <p id="res-desc"></p>
+            <div class="element-info" id="res-element-modifier"></div>
+            
+            <div id="res-ascendant-container" class="extra-section" style="display:none;">
+                <h4 id="txt-ascendant-title">Ascendente (Segno dell'Ora)</h4>
+                <p id="res-ascendant"></p>
+            </div>
+
+            <div class="extra-section">
+                <h4 id="txt-compat-title">Affinità e Compatibilità</h4>
+                <p id="res-compatibility"></p>
+            </div>
+
+            <div class="extra-section">
+                <h4 id="txt-lucky-title">Fortuna e Simboli</h4>
+                <p id="res-lucky"></p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="copyResult()" id="btn-copy">📋 Copia Profilo</button>
+                <button class="btn-secondary" onclick="downloadCard()" id="btn-download">🖼️ Scarica Card</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 id="txt-guide-title">Come gli Elementi Modificano i Segni</h2>
+        <p id="txt-guide-sub" style="font-size: 0.95rem; color: var(--subtext);">
+            L'animale rappresenta la personalità di base, mentre l'elemento funge da "modificatore" del carattere.
+        </p>
+        <div class="elements-guide" id="elements-guide"></div>
+    </div>
+
+    <div class="card">
+        <h2 id="txt-animals-title">I 12 Segni dello Zodiaco</h2>
+        <div class="grid" id="animals-grid"></div>
+    </div>
+</div>
+
+<!-- Struttura Card Nascosta per l'Export Immagine -->
+<div id="downloadable-card">
+    <h2 id="card-out-title" style="margin-top:0; color:#c0392b;">Zodiaco Cinese</h2>
+    <h3 id="card-out-sign" style="color:#d35400;"></h3>
+    <p id="card-out-elem"></p>
+    <p id="card-out-desc"></p>
+    <hr style="border: 0; border-top: 1px solid #ccc; margin: 15px 0;">
+    <p id="card-out-lucky" style="font-size: 0.9rem;"></p>
+</div>
+
+<script src="Yùelì (月历).js"></script>
+</body>
+</html>
